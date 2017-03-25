@@ -7,7 +7,6 @@ package com.gradlesfault.sidsrx;
 public class Prescription {
     private int ID;
     private boolean EXPIRED = true;
-    private int commision = 0;
     private int doctorID;
     private int patientID;
     Prescription(int ID, int doctorID, int patientID){
@@ -18,7 +17,7 @@ public class Prescription {
     }
 
     public static boolean verify(int presID){
-        //check if prescription exists on database
+        //todo: check if prescription exists on database
         return true;
     }
     //method to create a local copy of Prescription from remote server
@@ -29,11 +28,10 @@ public class Prescription {
         int ID = 0;
         int patientID = 0;
         int doctorID = 0;
-        int commission = 0;
+
         boolean EXPIRED = false;
 
         prescription = new Prescription(ID,doctorID,patientID);
-        prescription.setCommision(commission);
         prescription.EXPIRED =  EXPIRED;
         return prescription;
     }
@@ -46,13 +44,6 @@ public class Prescription {
         this.ID = ID;
     }
 
-    public int getCommision() {
-        return commision;
-    }
-
-    public void setCommision(int commision) {
-        this.commision = commision;
-    }
 
     public int getDoctorID() {
         return doctorID;
