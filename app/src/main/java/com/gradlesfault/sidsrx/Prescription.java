@@ -64,7 +64,11 @@ public class Prescription {
         }
         return success;
     }
-
+    public boolean setExpiredStatus(boolean status){
+        boolean success = false;
+        //todo : update expired status on database
+        return success;
+    }
     public int getPatientID() {
         return patientID;
     }
