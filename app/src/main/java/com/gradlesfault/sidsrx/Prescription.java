@@ -17,6 +17,27 @@ public class Prescription {
         EXPIRED = false;
     }
 
+    public static boolean verify(int presID){
+        //check if prescription exists on database
+        return true;
+    }
+    //method to create a local copy of Prescription from remote server
+    public static Prescription getPrescriptionById(int presID){
+        // todo: fetch prescription details from server for Prescription ID presID
+
+        Prescription prescription;
+        int ID = 0;
+        int patientID = 0;
+        int doctorID = 0;
+        int commission = 0;
+        boolean EXPIRED = false;
+
+        prescription = new Prescription(ID,doctorID,patientID);
+        prescription.setCommision(commission);
+        prescription.EXPIRED =  EXPIRED;
+        return prescription;
+    }
+
     public int getID() {
         return ID;
     }
