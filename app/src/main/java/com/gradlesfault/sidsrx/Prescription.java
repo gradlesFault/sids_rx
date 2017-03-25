@@ -56,12 +56,8 @@ public class Prescription {
         return this.EXPIRED;
     }
     public boolean invalidate(){
-        //todo : set EXPIRE status to false on database and update database;
         boolean success = true;
-        //todo: set success to false if database operation was not successful
-        if(success){
-            this.EXPIRED = true; //update local copy
-        }
+        success = setExpiredStatus(true); //setExpiredstatus will handle database operation
         return success;
     }
     public boolean setExpiredStatus(boolean status){
