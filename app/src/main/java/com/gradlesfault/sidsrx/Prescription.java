@@ -14,6 +14,7 @@ public class Prescription {
         this.doctorID = doctorID;
         this.patientID = patientID;
         EXPIRED = false;
+        //todo: upload to remote database
     }
 
     public static boolean verify(int presID){
