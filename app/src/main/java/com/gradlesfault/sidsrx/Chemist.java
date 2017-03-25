@@ -19,5 +19,15 @@ public class Chemist {
         this.name = name;
         this.storeID = storeId;
     }
-
+    public boolean checkPrescription(int presID){
+        return Prescription.verify(presID);
+    }
+    public boolean invalidatePrescription(int presID){
+        boolean success = false;
+        Prescription prescription = Prescription.getPrescriptionById(presID); //fetches prescription from database
+        if(!prescription.isEXPIRED()){
+            success = prescription.invalidate(); //returns true if database operation was successful
+        }
+        return success;
+    }
 }
