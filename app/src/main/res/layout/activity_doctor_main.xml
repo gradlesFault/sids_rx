@@ -29,7 +29,7 @@
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="8dp"/>
 
             <EditText
                 android:id="@+id/patient_id_edittext_doctor"
@@ -66,33 +66,51 @@
                 app:layout_constraintTop_toBottomOf="@+id/patient_id_edittext_doctor"
                 android:layout_marginEnd="8dp" />
 
-            <Button
-                android:id="@+id/save_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="237dp"
-                android:layout_marginTop="64dp"
-                android:background="@android:color/transparent"
-                android:text="Save"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:layout_constraintRight_toRightOf="@+id/patient_id_edittext_doctor"
-                app:layout_constraintTop_toBottomOf="@+id/patient_id_edittext_doctor"
-                android:onClick="onClick"/>
 
-            <TextView
-                android:id="@+id/random_rx"
-                android:layout_width="119dp"
-                android:layout_height="43dp"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@+id/patient_id_edittext_doctor"
-                android:layout_marginLeft="8dp"
-                app:layout_constraintLeft_toLeftOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/generated_rxid_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:elevation="@dimen/cardview_default_elevation">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Generated Rx ID"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="8dp"
+                android:id="@+id/textView3" />
+            <TextView
+                android:id="@+id/random_rx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RXID1234"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

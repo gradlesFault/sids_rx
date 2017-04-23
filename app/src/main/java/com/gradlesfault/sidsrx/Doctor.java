@@ -18,6 +18,31 @@ public class Doctor {
         this.name = name;
         this.hospitalID = hospitalID;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getHospitalID() {
+        return hospitalID;
+    }
+
+    public void setHospitalID(int hospitalID) {
+        this.hospitalID = hospitalID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int createPrescription(int patientID){
         int presID;
         //todo : generate a unique presID

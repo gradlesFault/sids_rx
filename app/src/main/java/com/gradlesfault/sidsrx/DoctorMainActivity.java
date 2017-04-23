@@ -2,7 +2,10 @@ package com.gradlesfault.sidsrx;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+
+import java.util.ArrayList;
 import java.util.Random;
 import java.lang.*;
 
@@ -33,7 +36,7 @@ public class DoctorMainActivity extends AppCompatActivity {
     EditText patient_id_edittext_doctor;
     Random myRandom;
     SQLiteDatabase db;
-    String paid;
+    String paid; //PAtient ID
     String result2;
 
     @Override
@@ -42,53 +45,40 @@ public class DoctorMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_main);
         toolbar = (Toolbar) findViewById(R.id.doctor_main_activty_toolbar);
         setSupportActionBar(toolbar);
+        connectDB();
         patient_id_edittext_doctor = (EditText) findViewById(R.id.patient_id_edittext_doctor);
-        paid= patient_id_edittext_doctor.getText().toString();
-
-        createDatabase();
+        paid =  patient_id_edittext_doctor.getText().toString();
+        Log.d("patID",paid);
 
         generate_rx_id_button = (Button) findViewById(R.id.generate_rx_id_button);
-        save_button = (Button) findViewById(R.id.save_button);
-
         random_rx = (TextView) findViewById(R.id.random_rx);
 
         generate_rx_id_button.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                String result = "";
                 Random myRandom = new Random();
-
-                result += String.valueOf(myRandom.nextInt());
-               result2 = result.replaceAll("[-+.^:,]", "");
-
-                random_rx.setText(result2);
-
+                Integer result2 = myRandom.nextInt();
+                random_rx.setText(result2.toString());
+                CardView cardView = (CardView)findViewById(R.id.generated_rxid_card);
+                cardView.setVisibility(View.VISIBLE);
+                if(MyDB.doctors == null){
+                    MyDB.doctors = MyDB.fetchDoctors();
+                }
+                Prescription prescription = new Prescription(result2,MyDB.fetchDoctors().get(0).getID(),123);
+                prescription.setExpiredStatus(false);
+                if(MyDB.prescriptions == null){
+                    MyDB.prescriptions = new ArrayList<Prescription>();
+                }
+                MyDB.prescriptions.add(prescription);
             }
         });
 
-        save_button.setOnClickListener(new Button.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-            insertIntoDB();
-
-            }
-        });
     }
-    protected void createDatabase(){
-        db=openOrCreateDatabase("Random_KEY_db", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS Rx_Table(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, RX_key VARCHAR);");
-    }
-
-
-    protected void insertIntoDB(){
-
-        String query = "INSERT INTO Rx_Table (RX_key) VALUES('"+result2+"');";
-        db.execSQL(query);
-        Toast.makeText(getApplicationContext(),"Saved Successfully", Toast.LENGTH_LONG).show();
-        Log.i("DB","Inserted into db");
+    public void connectDB(){
+        MyDB.prescriptions = new ArrayList<Prescription>();
+        MyDB.doctors = MyDB.fetchDoctors();
+        MyDB.chemists = MyDB.fetchChemists();
     }
 
 }
